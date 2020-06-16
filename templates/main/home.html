@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .parallax{
+        background-image: url("{% static 'p3.png' %}");
+        min-height: 100vh;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .full{
+        min-height: 100vh;
+        margin-bottom: 25vh;
+    }
+    p, li{
+        font-size: 3vh;
+    }
+    #about{
+        background-image: url("{% static 'about.jpg' %}");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: auto;
+        height: max-content;
+    }
+    
+    h1{
+        text-align: center;
+    }
+    @media(max-width: 700px){
+        .parallax{
+            background-image: url("{% static 'p3.png' %}");
+            width: 100vw;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: black;
+        }   
+    }
+    #cryptography{
+        background-image: url("{% static 'hashing.png' %}");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: auto;
+        padding: 10vh;
+        color: antiquewhite;
+    }
+    #diagram{
+        width:100vw;
+        margin-top:5vh;
+    }
+    
+</style>
+<div class="full">
+    <div class="parallax" loading="lazy"></div>
+    <div class="container" >
+        <h1><b><i>Dipher</i></b></h1>
+        <div >
+            <div class="row round-b">
+                <div class="col col-12 col-lg-6 col-md-6 col-sm-6">
+                    <p >This is the perfect place to <b>upload</b>, <b>store</b> and <b>encrypt</b> your important files to keep them safe.</p>
+                </div>
+                <div class="col col-12 col-lg-6 col-md-6 col-sm-6">
+                    <p>Your data is encrypted in <b>various different</b> ways which makes it almost impossible to decrypt without this site.</p>
+
+                </div>
+            </div>
+            <div class="row round-b">
+                <div class="col  col-12 col-lg-4 col-md-4 col-sm-4">
+                    <p>Want to encrypt and keep your files <b>safe</b>?</p>
+                </div>
+                <div class="col  col-12 col-lg-4 col-md-4 col-sm-4">
+                    <p> Go right away to <b>SignUp</b> and make yourself a <b>Dipher</b> account right now.</p>
+                </div>
+                <div class="col  col-12 col-lg-4 col-md-4 col-sm-4">
+                    <p>Enjoy <b>unlimited</b> storage right away.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div loading="lazy">
+        <h1> <b><i>Cryptography</i></b> </h1>
+        <div id="cryptography" class="round-b">
+            <div class="row round-b">
+                <div class="col">
+                    <p>Cryptography is a method of protecting information and communications through the use of codes, so that only those for whom the information is intended can read and process it. The prefix "crypt-" means "hidden" or "vault" -- and the suffix "-graphy" stands for "writing."</p>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="container">
+        <h1><b><i>Concerns of modern cryptography</i></b></h1>
+        <div class="row round-b">
+            <ol>
+                <li>
+                    <b>Confidentiality:</b> the information cannot be understood by anyone for whom it was unintended
+                </li>
+                <li>
+                    <b>Integrity:</b> the information cannot be altered in storage or transit between sender and intended receiver without the alteration being detected
+                </li>
+                <li>
+                    <b>Non-repudiation:</b> the creator/sender of the information cannot deny at a later stage his or her intentions in the creation or transmission of the information
+                </li>
+                <li>
+                    <b>Authentication:</b> the sender and receiver can confirm each other's identity and the origin/destination of the information
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div id="diagram" class="container"> 
+        <img src="{% static 'diagram.jpg' %}" width="100%" height="auto" loading="lazy">
+    </div>
+
+</div>
+{% endblock %}

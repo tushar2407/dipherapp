@@ -1,0 +1,140 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    #label{
+        font-size: large;
+    }
+    div.col:hover{
+        background-color: rgba(0,0,0,0.15);
+    }
+    .background{
+        background-color: black;
+        color:white;
+    }
+</style>
+<div class="background ">
+<div class="container" style="padding-bottom: 25vh; background-color: rgba(0,0,0,0.15); padding-top: 5vh; padding-bottom: 5vh;">
+    <h1 style="text-align: center;">Profile</h1>
+    <div class="row">
+        <div style=" min-width: fit-content;" class="col col-lg-4 col-md-2 round-b">
+            <h1>User Name</h1>
+        </div>
+        <div class="col col-lg-8 col-md-3 round-b" style="min-width:initial; text-align: center;">
+            <h1>{{user.username}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col round-b col-lg-8">
+            <h3>First Name</h3>
+        </div>
+        <div class="col round-b col-lg-4">
+            {% if not profile.user.first_name %}
+                <h3>-</h3>
+            {% else %}
+                <h3>{{profile.user.first_name}}</h3>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col round-b col-lg-4">
+            <h3>Last Name</h3>
+        </div>
+        <div class="col round-b col-lg-8" style="min-width:inital ;">
+            {% if not profile.user.last_name %}
+                <h3>-</h3>
+            {% else %}
+                <h3>{{profile.user.last_name}}</h3>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col round-b col-lg-8">
+           <h3> DOB</h3> 
+        </div>
+        <div class="col round-b col-lg-4">
+            <h3> {{birthDate}}</h3> 
+        </div>
+    </div>
+    <div class="row">
+        <div style=" min-width: fit-content;" class="col col-lg-4 col-md-2 round-b">
+            <h3>Bio</h3>
+        </div>
+        <div class="col col-lg-8 col-md-3 round-b" style="min-width:initial;">
+            {% if profile.bio %}
+            <p >{{profile.bio}}</p>
+            {% else %}
+            <p class="text-muted"> &lt;No Bio&gt; </p>
+            {% endif%}
+        </div>
+    </div>
+    <div class="row">
+        <div style=" min-width: fit-content;" class="col col-lg-8 col-md-2 round-b">
+            <h3>Number of files uploaded </h3>
+        </div>
+        <div class="col col-lg-4 col-md-3 round-b" style="min-width:initial;">
+            <h3>{{fileNo}}</h3>
+        </div>
+    </div>
+    <style>
+        ul{
+            list-style: none;
+        }
+        li{
+            text-align: center;
+            transition: 0.5s ease-in-out;
+        }
+        li:hover{
+            background-color: #ccc;            
+        }
+        .table{
+            color: white !important; 
+        }
+    </style>
+    <div class="container" style="margin-top: 5vh; margin-bottom: 25vh;">
+        <h1 style="text-align: center;"> Uploaded Files</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">File</th>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                <tr>
+                    <td>
+                        {{file.name}}
+                    </td>
+                    <td>
+                        <a href="{{file.file.url}}" class="btn btn-primary">View</a>
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'delete' file.pk%}">
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'download' file.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Download</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<script>
+    $('nav ul:nth-child(1) li:nth-child(1)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(5)').addClass('active');
+    $('nav ul:nth-child(1) li:nth-child(3)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(4)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(2)').removeClass('active');
+</script>
+{% endblock%}

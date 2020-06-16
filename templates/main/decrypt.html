@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<form method='POST'>
+    {% csrf_token %}
+    <div class="card my-4">
+        <div class="card-body">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Enter data to decipher</label>
+                <input class="form-control" name="text" placeholder="Enter data">
+            </div>
+            <button type="submit" class="btn btn-primary"> Decipher</button>
+        </div>
+    </div>
+</form>
+<div class="card my-4">
+    <div class="card-body">
+        <label for="exampleInputEmail1">Decrypted data</label>
+        <div class="row">
+            <div class="col">
+                <textarea class="form-control">{{decrypted_content}}</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% if not user.is_authenticated %}
+<script>
+    $('nav ul:nth-child(1) li:nth-child(1)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(3)').addClass('active');
+    $('nav ul:nth-child(1) li:nth-child(2)').removeClass('active');
+</script>
+{% else %}
+<script>
+    $('nav ul:nth-child(1) li:nth-child(1)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(4)').addClass('active');
+    $('nav ul:nth-child(1) li:nth-child(2)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(3)').removeClass('active');
+    $('nav ul:nth-child(1) li:nth-child(5)').removeClass('active');
+</script>
+{% endif %}
+
+{% endblock %}
